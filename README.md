@@ -2,6 +2,9 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
 
+Country App is a web application that provides detailed information about countries around the world. Users can search for countries, view key data such as population, capital, region, flag, and more. The app offers a clean, responsive interface and is built using modern web technologies, making it a great tool for exploring global data in a user-friendly way.
+
+
 ## Development server
 
 To start a local development server, run:
