@@ -1,3 +1,47 @@
-p {
-  padding: 12px;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  margin: 64px 48px 48px 48px;
+
+  &__country-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    &__item {
+      flex-basis: 400px;
+      margin-bottom: 48px;
+    }
+  }
 }
+
+mat-card {
+  background-color: white;
+  box-shadow: 5px 5px 5px 5px whitesmoke;
+  margin: 16px;
+
+  &-img {
+    height: 200px;
+  }
+
+  &-content {
+      .country-name {
+        margin-top: 16px;
+      }
+
+      .country-info {
+        margin-top: 16px;
+
+        .row {
+          margin-top: 6px;
+
+          .value {
+            color: darkslategrey;
+            margin-right: 6px;
+          }
+        }
+      }
+  }
+}
+
