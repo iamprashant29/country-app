@@ -1,3 +1,76 @@
-p {
-  padding: 12px;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  margin: 64px 48px 48px 48px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  &__country-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    &__item {
+      flex-basis: 400px;
+      margin-bottom: 48px;
+    }
+  }
+}
+
+mat-card {
+  background-color: white;
+  box-shadow: 5px 5px 5px 5px whitesmoke;
+  margin: 16px;
+
+  &-img {
+    height: 200px;
+  }
+
+  &-content {
+      .country-name {
+        margin-top: 16px;
+      }
+
+      .country-info {
+        margin-top: 16px;
+
+        .row {
+          margin-top: 6px;
+
+          .value {
+            color: darkslategrey;
+            margin-right: 6px;
+          }
+        }
+      }
+  }
+}
+
+mat-form-field {
+  margin: 0 24px;
+  width: 500px;
+  box-shadow: 5px 5px 5px 5px whitesmoke;
+  border-radius: 10px;
+}
+
+
+::ng-deep {
+  .mdc-text-field {
+    &--filled, &--hovered {
+      background-color: white !important;
+    }
+  }
+
+  .mat-mdc-form-field-focus-overlay {
+    background-color: white !important;
+  }
+
+  .mdc-line-ripple {
+    display: none;
+  }
 }
