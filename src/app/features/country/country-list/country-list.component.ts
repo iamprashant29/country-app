@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, DestroyRef, Inject, inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, DestroyRef, Inject, OnInit} from '@angular/core';
 import {SharedModule} from '../../../shared/shared.module';
 import {CountryService} from '../country.service';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -6,7 +6,7 @@ import {MatFormField, MatInputModule} from '@angular/material/input';
 import {MatCard, MatCardContent, MatCardImage} from '@angular/material/card';
 import {NgOptimizedImage} from '@angular/common';
 import {MatIcon} from "@angular/material/icon";
-import {debounceTime, distinctUntilChanged, switchMap} from "rxjs";
+import {catchError, debounceTime, distinctUntilChanged, of, switchMap} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
@@ -34,6 +34,7 @@ export class CountryListComponent implements OnInit, AfterViewInit {
   /**
    * ngAfterViewInit
    **/
+  // TODO: Handle 404 error in interceptor
   ngAfterViewInit() {
     this.searchForm.get('searchTerm')?.valueChanges.pipe(
         debounceTime(1000),
@@ -42,9 +43,10 @@ export class CountryListComponent implements OnInit, AfterViewInit {
         switchMap((searchTerm: string) => {
           return searchTerm? this.countryService.filterByName(searchTerm) : this.countryService.getCountries()
         }),
+        catchError(() => of([]))
     ).subscribe(filteredCountries => {
       this.countriesList = this.sortData(filteredCountries);
-    })
+    });
   }
 
   /**
@@ -67,7 +69,7 @@ export class CountryListComponent implements OnInit, AfterViewInit {
   }
 
   private sortData(data: any) {
-    return data.sort((a: any, b: any) => {
+    return data?.sort((a: any, b: any) => {
       if (a?.name?.common < b?.name?.common)
         return -1;
       if (a?.name?.common > b?.name?.common)

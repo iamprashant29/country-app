@@ -3,6 +3,6 @@ export class ApiConstants {
 
   static constants  = {
     GET_ALL_COUNTRIES: `${ApiConstants.BASE_URL}/all`,
-    SEARCH_BY_COUNTRY_NAME: `${ApiConstants.BASE_URL}/all/name`
+    SEARCH_BY_COUNTRY_NAME: `${ApiConstants.BASE_URL}/name`
   };
 }
