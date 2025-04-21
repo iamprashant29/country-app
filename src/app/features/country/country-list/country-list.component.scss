@@ -3,6 +3,12 @@
   flex-direction: column;
   margin: 64px 48px 48px 48px;
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
   &__country-list {
     display: flex;
     flex-direction: row;
@@ -45,3 +51,26 @@ mat-card {
   }
 }
 
+mat-form-field {
+  margin-left: 24px;
+  width: 500px;
+  box-shadow: 5px 5px 5px 5px whitesmoke;
+  border-radius: 10px;
+}
+
+
+::ng-deep {
+  .mdc-text-field {
+    &--filled, &--hovered {
+      background-color: white !important;
+    }
+  }
+
+  .mat-mdc-form-field-focus-overlay {
+    background-color: white !important;
+  }
+
+  .mdc-line-ripple {
+    display: none;
+  }
+}

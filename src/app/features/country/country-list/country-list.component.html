@@ -1,17 +1,16 @@
 <div class="main-container">
-    <div class="header">
-<!--        <div [formGroup]="searchForm">-->
-<!--            <mat-form-field appearance="fill" floatLabel="auto">-->
-<!--                <mat-label>Search for a country</mat-label>-->
-<!--                <input matInput formControlName="searchTerm" />-->
-<!--                <mat-icon matPrefix>search</mat-icon>-->
-<!--            </mat-form-field>-->
-<!--        </div>-->
+    <div class="main-container__header">
+        <div [formGroup]="searchForm">
+            <mat-form-field floatLabel="auto">
+                <mat-icon matPrefix>search</mat-icon>
+                <input matInput placeholder="Search for a country" formControlName="searchTerm"/>
+            </mat-form-field>
+        </div>
     </div>
     <div class="main-container__country-list">
         <div class="main-container__country-list__item" *ngFor="let country of countriesList; let i = index;">
             <mat-card>
-                <img mat-card-image ngSrc="{{country['flags']['png']}}" width="400" height="200" alt="Photo of a Shiba Inu">
+                <img mat-card-image ngSrc="{{country['flags']['png']}}" width="400" height="200" priority>
                 <mat-card-content>
                     <div class="country-name">
                         <strong>{{country?.name.common }}</strong>

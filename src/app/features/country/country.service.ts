@@ -25,7 +25,7 @@ export class CountryService extends BaseService {
    * @param searchTerm
    * @returns Observable<any>
    **/
-  searchCountriesByName(searchTerm: string): Observable<any> {
+  filterByName(searchTerm: string): Observable<any> {
     const apiUrl = `${ApiConstants.constants.SEARCH_BY_COUNTRY_NAME}/${searchTerm}`;
     return this.httpClient?.get<any>(apiUrl);
   }
