@@ -1,24 +1,28 @@
-import {AfterViewInit, Component, DestroyRef, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, Inject, OnInit} from '@angular/core';
 import {SharedModule} from '../../../shared/shared.module';
 import {CountryService} from '../country.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MatFormField, MatInputModule} from '@angular/material/input';
 import {MatCard, MatCardContent, MatCardImage} from '@angular/material/card';
 import {NgOptimizedImage} from '@angular/common';
-import {MatIcon} from "@angular/material/icon";
-import {catchError, debounceTime, distinctUntilChanged, of, switchMap} from "rxjs";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {MatIcon} from '@angular/material/icon';
+import {catchError, debounceTime, distinctUntilChanged, map, of, switchMap, tap} from 'rxjs';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {MatOption, MatSelect} from '@angular/material/select';
 
 @Component({
   selector: 'app-country-list',
   templateUrl: './country-list.component.html',
   styleUrl: 'country-list.component.scss',
-  imports: [SharedModule, MatInputModule, MatCard, MatCardContent, MatCardImage, NgOptimizedImage, MatFormField, MatIcon],
+  imports: [SharedModule, MatInputModule, MatCard, MatCardContent, MatCardImage, NgOptimizedImage, MatFormField, MatIcon, MatSelect, MatOption],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CountryListComponent implements OnInit, AfterViewInit {
   countriesList: any[] = [];
 
   searchForm!: FormGroup;
+
+  availableRegions = ['All'];
 
   constructor(@Inject(DestroyRef) private destroyRef: DestroyRef,
               private countryService: CountryService) {}
@@ -43,9 +47,12 @@ export class CountryListComponent implements OnInit, AfterViewInit {
         switchMap((searchTerm: string) => {
           return searchTerm? this.countryService.filterByName(searchTerm) : this.countryService.getCountries()
         }),
+        map(filteredCountries => {
+          return this.sortData(filteredCountries);
+        }),
         catchError(() => of([]))
-    ).subscribe(filteredCountries => {
-      this.countriesList = this.sortData(filteredCountries);
+    ).subscribe(response => {
+      this.countriesList = response;
     });
   }
 
@@ -62,12 +69,22 @@ export class CountryListComponent implements OnInit, AfterViewInit {
    * Fetches the country list from the server
    **/
   private getCountriesList() {
-    this.countryService.getCountries().subscribe((response) => {
-      this.countriesList = this.sortData(response);
-      console.log(this.countriesList);
+    this.countryService.getCountries().pipe(
+      tap(countries => {
+        this.populateRegions(countries);
+      }),
+      map(countries => {
+        return this.sortData(countries);
+      })
+    )
+      .subscribe((response) => {
+      this.countriesList = response;
     });
   }
 
+  /**
+   * Sort countries alphabetically based on the 'name' attribute
+   **/
   private sortData(data: any) {
     return data?.sort((a: any, b: any) => {
       if (a?.name?.common < b?.name?.common)
@@ -76,5 +93,33 @@ export class CountryListComponent implements OnInit, AfterViewInit {
         return 1;
       return 0;
     });
+  }
+
+  /**
+   * Initializes the available regions to be used in the filter dropdown
+   **/
+  private populateRegions(data: any) {
+    const regions: any[] = [];
+    data.forEach((country: any) => {
+      if (!regions.includes(country.region)) {
+        regions.push(country.region);
+      }
+    });
+    regions.sort();
+    this.availableRegions = [...this.availableRegions, ...regions];
+  }
+
+  /**
+   * Gets called on selected region change
+   **/
+  public onSelectRegion(event: any) {
+    this.countryService.filterByRegion(event.value).pipe(
+      map((data) => {
+        return this.sortData(data);
+      })
+    )
+      .subscribe((data) => {
+        this.countriesList = data;
+      });
   }
 }

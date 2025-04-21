@@ -1,11 +1,17 @@
 <div class="main-container">
-    <div class="main-container__header">
-        <div [formGroup]="searchForm">
-            <mat-form-field floatLabel="auto">
-                <mat-icon matPrefix>search</mat-icon>
-                <input matInput placeholder="Search for a country" formControlName="searchTerm"/>
-            </mat-form-field>
-        </div>
+    <div class="main-container__header" [formGroup]="searchForm">
+      <mat-form-field class="name-filter" floatLabel="auto">
+        <mat-label>Search for a country</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput placeholder="" formControlName="searchTerm"/>
+      </mat-form-field>
+
+      <mat-form-field class="region-filter" floatLabel="auto">
+        <mat-label>Filter By Region</mat-label>
+        <mat-select (selectionChange)="onSelectRegion($event)">
+          <mat-option *ngFor="let region of availableRegions" value="{{ region }}">{{ region }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="main-container__country-list">
         <div class="main-container__country-list__item" *ngFor="let country of countriesList; let i = index;">

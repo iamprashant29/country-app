@@ -29,4 +29,17 @@ export class CountryService extends BaseService {
     const apiUrl = `${ApiConstants.constants.SEARCH_BY_COUNTRY_NAME}/${searchTerm}`;
     return this.httpClient?.get<any>(apiUrl);
   }
+
+  /**
+   * Fetches countries by selected region
+   * @param region
+   * @returns Observable<any>
+   **/
+  filterByRegion(region: string): Observable<any> {
+    if (region === 'All') {
+      return this.getCountries();
+    }
+    const apiUrl = `${ApiConstants.constants.FILTER_BY_REGION}/${region}`;
+    return this.httpClient?.get<any>(apiUrl);
+  }
 }
