@@ -1,9 +1,26 @@
 .navbar {
-  background-color: white;
+  overflow: hidden;
+  background-color: var(--widgetColor);
   position: fixed;
   top: 0;
   width: 100%;
   height: 50px;
-  box-shadow: 2px 2px 2px 2px white;
+  box-shadow: 2px 2px 2px 2px var(--boxColor);
   z-index: 10;
+
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 36px;
+    margin-top: 18px;
+    gap: 5px;
+
+    mat-icon {
+      color: var(--textColor);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
