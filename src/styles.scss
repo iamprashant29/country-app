@@ -1,16 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; background-color: var(--bgColor); }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
 $bgColor_light: whitesmoke;
 $bgColor_dark: black;
 
 $widgetsBackground_light: white;
 $widgetsBackground_dark: darkslategray;
-
-$boxColor_light: white;
-$boxColor_dark: darkslategray;
 
 $textColor_light: black;
 $textColor_dark: white;
@@ -19,7 +13,6 @@ $textColor_dark: white;
 @mixin lightMode() {
   --bgColor: #{$bgColor_light};
   --widgetColor: #{$widgetsBackground_light};
-  --boxColor: #{$boxColor_light};
   --textColor: #{$textColor_light};
 }
 
@@ -27,13 +20,26 @@ $textColor_dark: white;
 @mixin darkMode() {
   --bgColor: #{$bgColor_dark};
   --widgetColor: #{$widgetsBackground_dark};
-  --boxColor: #{$boxColor_dark};
   --textColor: #{$textColor_dark};
 }
 
-body.dark {
-  @include darkMode();
+html, body
+{
+  height: 100%;
+  background-color: var(--bgColor);
 }
-body.light {
-  @include lightMode();
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.light {
+    @include lightMode();
+  }
+
+  &.dark {
+    @include darkMode();
+  }
 }
