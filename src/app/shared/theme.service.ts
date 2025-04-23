@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Renderer2, RendererFactory2} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ThemeType} from './theme.model';
 
@@ -6,13 +6,14 @@ import {ThemeType} from './theme.model';
   providedIn: 'root'
 })
 export class ThemeService {
+  private renderer: Renderer2;
+
   public isDarkMode = new BehaviorSubject(false);
 
   activeMode = ThemeType.Light;
 
-  constructor() {
-    document.body.classList.add(ThemeType.Light);
-    document.body.classList.add(ThemeType.Dark);
+  constructor(private rendererFactory: RendererFactory2) {
+    this.renderer = this.rendererFactory.createRenderer(null, null)
   }
 
   /**
@@ -21,9 +22,11 @@ export class ThemeService {
   setActiveMode(mode: ThemeType) {
     this.activeMode = mode;
     if (mode === ThemeType.Dark) {
-      document.body.classList.replace(ThemeType.Light, ThemeType.Dark);
+      this.renderer.removeClass(document.body, ThemeType.Light);
+      this.renderer.addClass(document.body, ThemeType.Dark);
     } else {
-      document.body.classList.replace(ThemeType.Dark, ThemeType.Light);
+      this.renderer.removeClass(document.body, ThemeType.Dark);
+      this.renderer.addClass(document.body, ThemeType.Light);
     }
     this.isDarkMode.next(mode === ThemeType.Dark);
   }
