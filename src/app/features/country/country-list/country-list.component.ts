@@ -10,6 +10,8 @@ import {catchError, debounceTime, distinctUntilChanged, map, of, switchMap, tap}
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {ActivatedRoute, Router, RouterOutlet} from '@angular/router';
+import {ErrorService} from '../../../shared/error.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-country-list',
@@ -27,14 +29,24 @@ export class CountryListComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DestroyRef) private destroyRef: DestroyRef,
               private countryService: CountryService,
+              private errorService: ErrorService,
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private snackBar: MatSnackBar) {
+  }
 
   /**
    * ngOnInit
    **/
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.errorService.getCountryNotFoundApiError().subscribe(
+      (data) => {
+        if (data) {
+          this.handleNoResultsFoundError();
+        }
+      }
+    );
     this.initializeForm();
     this.getCountriesList();
   }
@@ -132,5 +144,15 @@ export class CountryListComponent implements OnInit, AfterViewInit {
    **/
   public viewCountryDetails(selectedCountry: string) {
     this.router.navigate([`details/${selectedCountry}`], {relativeTo: this.route}).then();
+  }
+
+  /**
+   * Shows toaster on country not found API error and reload the page
+   **/
+  private handleNoResultsFoundError() {
+    this.snackBar.open('No results found for this search text. Please try again.', 'OK', {duration: 3000});
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   }
 }
