@@ -33,6 +33,7 @@ mat-card {
   &-content {
       .country-name {
         color: var(--textColor);
+        opacity: 0.8;
         margin-top: 16px;
       }
 
@@ -48,6 +49,7 @@ mat-card {
 
           .value {
             color: var(--textColor);
+            opacity: 0.8;
             margin-left: 6px;
           }
         }
@@ -87,9 +89,11 @@ mat-label {
 
   .mat-mdc-form-field-icon-prefix>.mat-icon {
     color: var(--textColor) !important;
+    opacity: 0.8 !important;
   }
 
   .mat-mdc-select-arrow svg {
     fill: var(--textColor) !important;
+    opacity: 0.8 !important;
   }
 }

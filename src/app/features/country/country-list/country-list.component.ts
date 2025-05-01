@@ -28,7 +28,9 @@ export class CountryListComponent implements OnInit, AfterViewInit {
   constructor(@Inject(DestroyRef) private destroyRef: DestroyRef,
               private countryService: CountryService,
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute) {
+    window.scrollTo(0, 0);
+  }
 
   /**
    * ngOnInit

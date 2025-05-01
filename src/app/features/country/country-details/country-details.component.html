@@ -1,1 +1,83 @@
-<h4>Country details works!!</h4>
+<div class="main-container">
+  <div class="main-container__header">
+    <button mat-raised-button (click)="onBackButtonClick()">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
+  </div>
+
+  <div class="main-container__content" *ngIf="selectedCountryDetails">
+    <img mat-card-image ngSrc="{{ selectedCountryDetails[0]['flags']['png'] }}" width="550" height="350" priority alt="'Unable to load image'">
+
+    <div class="main-container__content__details">
+      <span class="main-container__content__details__heading">{{ selectedCountryDetails[0]['name']['common'] }}</span>
+
+      <div class="main-container__content__details__info">
+        <div class="row">
+          <span class="label">
+            Official:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails[0]['name']['official'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Population:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails[0]['population'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Region:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails[0]['region'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Sub-Region:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails[0]['subregion'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Capital:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails[0]['capital'][0] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Top-Level-Domains:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails[0]['tld'][0] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Currency:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails[0]['name']['official'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Languages:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails[0]['name']['official'] }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
