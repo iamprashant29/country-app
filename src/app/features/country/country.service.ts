@@ -50,4 +50,14 @@ export class CountryService extends BaseService {
     const apiUrl = `${ApiConstants.constants.FILTER_BY_REGION}/${region}`;
     return this.httpClient?.get<any>(apiUrl);
   }
+
+  /**
+   * Fetches country by provided country code
+   * @param code
+   * @returns Observable<any>
+   **/
+  filterByCode(code: string): Observable<any> {
+    const apiUrl = `${ApiConstants.constants.FILTER_BY_CODE}/${code}`;
+    return this.httpClient?.get<any>(apiUrl);
+  }
 }

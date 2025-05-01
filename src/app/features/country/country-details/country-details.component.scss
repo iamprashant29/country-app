@@ -15,7 +15,9 @@
     gap: 48px;
 
     &__details {
-      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      padding: 6px;
 
       &__heading {
         font-size: 30px;
@@ -48,6 +50,20 @@
             margin-left: 6px;
           }
         }
+      }
+
+      &__border-countries {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 18px;
+        gap: 12px;
+
+        .label {
+          font-size: 18px;
+          font-weight: 500;
+          color: gray;
+       }
       }
     }
   }

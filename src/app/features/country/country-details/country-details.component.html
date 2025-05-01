@@ -7,7 +7,7 @@
   </div>
 
   <div class="main-container__content" *ngIf="selectedCountryDetails">
-    <img mat-card-image ngSrc="{{ selectedCountryDetails[0]['flags']['png'] }}" width="550" height="350" priority alt="'Unable to load image'">
+    <img mat-card-image ngSrc="{{ selectedCountryDetails[0]['flags']['png'] }}" width="620" height="420" priority alt="'Unable to load image'">
 
     <div class="main-container__content__details">
       <span class="main-container__content__details__heading">{{ selectedCountryDetails[0]['name']['common'] }}</span>
@@ -77,6 +77,15 @@
             {{ selectedCountryDetails[0]['name']['official'] }}
           </span>
         </div>
+      </div>
+
+      <div class="main-container__content__details__border-countries">
+        <span class="label">
+            Border Countries:
+          </span>
+        <button mat-raised-button *ngFor="let borderCountry of borderCountries">
+          {{ borderCountry }}
+        </button>
       </div>
     </div>
   </div>
