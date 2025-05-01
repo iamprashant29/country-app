@@ -28,14 +28,13 @@ export class CountryListComponent implements OnInit, AfterViewInit {
   constructor(@Inject(DestroyRef) private destroyRef: DestroyRef,
               private countryService: CountryService,
               private router: Router,
-              private route: ActivatedRoute) {
-    window.scrollTo(0, 0);
-  }
+              private route: ActivatedRoute) {}
 
   /**
    * ngOnInit
    **/
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.initializeForm();
     this.getCountriesList();
   }

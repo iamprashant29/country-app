@@ -7,10 +7,10 @@
   </div>
 
   <div class="main-container__content" *ngIf="selectedCountryDetails">
-    <img mat-card-image ngSrc="{{ selectedCountryDetails[0]['flags']['png'] }}" width="620" height="420" priority alt="'Unable to load image'">
+    <img mat-card-image ngSrc="{{ selectedCountryDetails['flags']['png'] }}" width="600" height="400" priority alt="'Unable to load image'">
 
     <div class="main-container__content__details">
-      <span class="main-container__content__details__heading">{{ selectedCountryDetails[0]['name']['common'] }}</span>
+      <span class="main-container__content__details__heading">{{ selectedCountryDetails['name']['common'] }}</span>
 
       <div class="main-container__content__details__info">
         <div class="row">
@@ -18,7 +18,7 @@
             Official:
           </span>
           <span class="value">
-            {{ selectedCountryDetails[0]['name']['official'] }}
+            {{ selectedCountryDetails['name']['official'] }}
           </span>
         </div>
         <div class="row">
@@ -26,7 +26,7 @@
             Population:
           </span>
           <span class="value">
-            {{ selectedCountryDetails[0]['population'] }}
+            {{ selectedCountryDetails['population'] }}
           </span>
         </div>
         <div class="row">
@@ -34,7 +34,7 @@
             Region:
           </span>
           <span class="value">
-            {{ selectedCountryDetails[0]['region'] }}
+            {{ selectedCountryDetails['region'] }}
           </span>
         </div>
         <div class="row">
@@ -42,7 +42,7 @@
             Sub-Region:
           </span>
           <span class="value">
-            {{ selectedCountryDetails[0]['subregion'] }}
+            {{ selectedCountryDetails['subregion'] }}
           </span>
         </div>
         <div class="row">
@@ -50,7 +50,7 @@
             Capital:
           </span>
           <span class="value">
-            {{ selectedCountryDetails[0]['capital'][0] }}
+            {{ selectedCountryDetails['capital'] }}
           </span>
         </div>
         <div class="row">
@@ -58,15 +58,15 @@
             Top-Level-Domains:
           </span>
           <span class="value">
-            {{ selectedCountryDetails[0]['tld'][0] }}
+            {{ selectedCountryDetails['tld'] }}
           </span>
         </div>
         <div class="row">
           <span class="label">
-            Currency:
+            Currencies:
           </span>
           <span class="value">
-            {{ selectedCountryDetails[0]['name']['official'] }}
+            {{ selectedCountryDetails['currencies'] }}
           </span>
         </div>
         <div class="row">
@@ -74,7 +74,7 @@
             Languages:
           </span>
           <span class="value">
-            {{ selectedCountryDetails[0]['name']['official'] }}
+            {{ selectedCountryDetails['languages'] }}
           </span>
         </div>
       </div>
@@ -83,7 +83,7 @@
         <span class="label">
             Border Countries:
           </span>
-        <button mat-raised-button *ngFor="let borderCountry of borderCountries">
+        <button mat-raised-button *ngFor="let borderCountry of borderCountries" (click)="viewCountryDetails(borderCountry)">
           {{ borderCountry }}
         </button>
       </div>
