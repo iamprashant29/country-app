@@ -15,40 +15,45 @@
     </div>
     <div class="main-container__country-list">
         <div class="main-container__country-list__item" *ngFor="let country of countriesList; let i = index;">
-            <mat-card>
-                <img mat-card-image ngSrc="{{country['flags']['png']}}" width="400" height="200" priority alt="'Unable to load image'">
-                <mat-card-content>
-                    <div class="country-name">
-                        <strong>{{country?.name.common }}</strong>
-                    </div>
-                    <div class="country-info">
-                        <div class="row">
+          @defer (on viewport) {
+            <mat-card (click)="viewCountryDetails(country?.name.common)">
+              <img mat-card-image ngSrc="{{country['flags']['png']}}" width="400" height="200" priority alt="'Unable to load image'">
+              <mat-card-content>
+                <div class="country-name">
+                  <strong>{{country?.name.common }}</strong>
+                </div>
+                <div class="country-info">
+                  <div class="row">
                             <span class="label">
                               Population:
                             </span>
-                            <span class="value">
+                    <span class="value">
                                 {{ country?.population }}
                             </span>
-                        </div>
-                        <div class="row">
+                  </div>
+                  <div class="row">
                             <span class="label">
                               Region:
                             </span>
-                            <span class="value">
+                    <span class="value">
                                 {{ country?.region }}
                             </span>
-                        </div>
-                        <div class="row">
+                  </div>
+                  <div class="row">
                             <span class="label">
                               Capital:
                             </span>
-                            <span class="value">
+                    <span class="value">
                                 {{ country?.capital ? country?.capital[0] : '' }}
                             </span>
-                        </div>
-                    </div>
-                </mat-card-content>
+                  </div>
+                </div>
+              </mat-card-content>
             </mat-card>
+          } @placeholder {
+            <div>Loading...</div>
+          }
         </div>
     </div>
 </div>
+

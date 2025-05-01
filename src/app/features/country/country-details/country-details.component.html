@@ -1,0 +1,92 @@
+<div class="main-container">
+  <div class="main-container__header">
+    <button mat-raised-button (click)="onBackButtonClick()">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
+  </div>
+
+  <div class="main-container__content" *ngIf="selectedCountryDetails">
+    <img mat-card-image ngSrc="{{ selectedCountryDetails['flags']['png'] }}" width="600" height="400" priority alt="'Unable to load image'">
+
+    <div class="main-container__content__details">
+      <span class="main-container__content__details__heading">{{ selectedCountryDetails['name']['common'] }}</span>
+
+      <div class="main-container__content__details__info">
+        <div class="row">
+          <span class="label">
+            Official:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails['name']['official'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Population:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails['population'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Region:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails['region'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Sub-Region:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails['subregion'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Capital:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails['capital'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Top-Level-Domains:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails['tld'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Currencies:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails['currencies'] }}
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">
+            Languages:
+          </span>
+          <span class="value">
+            {{ selectedCountryDetails['languages'] }}
+          </span>
+        </div>
+      </div>
+
+      <div class="main-container__content__details__border-countries">
+        <span class="label">
+            Border Countries:
+          </span>
+        <button mat-raised-button *ngFor="let borderCountry of borderCountries" (click)="viewCountryDetails(borderCountry)">
+          {{ borderCountry }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

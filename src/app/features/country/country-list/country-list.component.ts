@@ -9,12 +9,13 @@ import {MatIcon} from '@angular/material/icon';
 import {catchError, debounceTime, distinctUntilChanged, map, of, switchMap, tap} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatOption, MatSelect} from '@angular/material/select';
+import {ActivatedRoute, Router, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-country-list',
   templateUrl: './country-list.component.html',
   styleUrl: 'country-list.component.scss',
-  imports: [SharedModule, MatInputModule, MatCard, MatCardContent, MatCardImage, NgOptimizedImage, MatFormField, MatIcon, MatSelect, MatOption],
+  imports: [SharedModule, MatInputModule, MatCard, MatCardContent, MatCardImage, NgOptimizedImage, MatFormField, MatIcon, MatSelect, MatOption, RouterOutlet],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CountryListComponent implements OnInit, AfterViewInit {
@@ -25,12 +26,15 @@ export class CountryListComponent implements OnInit, AfterViewInit {
   availableRegions = ['All'];
 
   constructor(@Inject(DestroyRef) private destroyRef: DestroyRef,
-              private countryService: CountryService) {}
+              private countryService: CountryService,
+              private router: Router,
+              private route: ActivatedRoute) {}
 
   /**
    * ngOnInit
    **/
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.initializeForm();
     this.getCountriesList();
   }
@@ -121,5 +125,12 @@ export class CountryListComponent implements OnInit, AfterViewInit {
       .subscribe((data) => {
         this.countriesList = data;
       });
+  }
+
+  /**
+   * Gets called on country card click
+   **/
+  public viewCountryDetails(selectedCountry: string) {
+    this.router.navigate([`details/${selectedCountry}`], {relativeTo: this.route}).then();
   }
 }

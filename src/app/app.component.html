@@ -1,2 +1,6 @@
-<div class="navbar"></div>
+<div class="navbar">
+  <div class="navbar__container">
+    <mat-icon fontIcon="{{ ($isDarkMode | async)? 'light_mode' : 'dark_mode'}}" (click)="toggleTheme()"></mat-icon>
+  </div>
+</div>
 <router-outlet />

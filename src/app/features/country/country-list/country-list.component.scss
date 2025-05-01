@@ -22,8 +22,8 @@
 }
 
 mat-card {
-  background-color: white;
-  box-shadow: 5px 5px 5px 5px whitesmoke;
+  background-color: var(--widgetColor);
+  box-shadow: 5px 5px 5px 5px var(--bgColor);
   margin: 16px;
 
   &-img {
@@ -32,6 +32,8 @@ mat-card {
 
   &-content {
       .country-name {
+        color: var(--textColor);
+        opacity: 0.8;
         margin-top: 16px;
       }
 
@@ -41,35 +43,57 @@ mat-card {
         .row {
           margin-top: 6px;
 
+          .label {
+            color: gray;
+          }
+
           .value {
-            color: darkslategrey;
-            margin-right: 6px;
+            color: var(--textColor);
+            opacity: 0.8;
+            margin-left: 6px;
           }
         }
       }
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 mat-form-field {
-  margin: 0 18px;
+  margin: 0 16px;
   width: 500px;
-  box-shadow: 5px 5px 5px 5px whitesmoke;
-  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px var(--bgColor);
+  border-radius: 10px 10px 10px 10px;
 }
 
+mat-label {
+  color: var(--textColor);
+}
 
 ::ng-deep {
   .mdc-text-field {
     &--filled, &--hovered {
-      background-color: white !important;
+      background-color: var(--widgetColor) !important;
     }
   }
 
   .mat-mdc-form-field-focus-overlay {
-    background-color: white !important;
+    background-color: var(--widgetColor) !important;
   }
 
   .mdc-line-ripple {
     display: none;
+  }
+
+  .mat-mdc-form-field-icon-prefix>.mat-icon {
+    color: var(--textColor) !important;
+    opacity: 0.8 !important;
+  }
+
+  .mat-mdc-select-arrow svg {
+    fill: var(--textColor) !important;
+    opacity: 0.8 !important;
   }
 }

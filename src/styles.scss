@@ -1,4 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; background-color: whitesmoke; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$bgColor_light: whitesmoke;
+$bgColor_dark: black;
+
+$widgetsBackground_light: white;
+$widgetsBackground_dark: darkslategray;
+
+$textColor_light: black;
+$textColor_dark: white;
+
+// mixin that enables css variables in light mode
+@mixin lightMode() {
+  --bgColor: #{$bgColor_light};
+  --widgetColor: #{$widgetsBackground_light};
+  --textColor: #{$textColor_light};
+}
+
+// mixin that enables css variables in dark mode
+@mixin darkMode() {
+  --bgColor: #{$bgColor_dark};
+  --widgetColor: #{$widgetsBackground_dark};
+  --textColor: #{$textColor_dark};
+}
+
+html, body
+{
+  height: 100%;
+  background-color: var(--bgColor);
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.light {
+    @include lightMode();
+  }
+
+  &.dark {
+    @include darkMode();
+  }
+}
