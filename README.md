@@ -4,7 +4,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 Country App is a web application that provides detailed information about countries around the world. Users can search for countries, view key data such as population, capital, region, flag, and more. Additionally, user can toggle between the Dark/Light mode. The app offers a clean, responsive interface and is built using modern web technologies, making it a great tool for exploring global data in a user-friendly way.
 
-The application is built using Angular v19 and leverages some of the performance optimization techniques like deferred loading of the images, lazy loading of the singleton components and interceptor to handle errors.
+The application is built using Angular v19, Typescript and RxJS, and leverages some of the performance optimization techniques like deferred loading of the images, lazy loading of the singleton components and interceptor to handle errors.
 
 Used CSS flexbox to provide the responsive layout and BEM methodology to organize CSS classes.
 
