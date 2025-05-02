@@ -8,7 +8,9 @@ export function errorInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn)
   if (req.url.includes('/name')) {
     return next(req).pipe(
       catchError((err: HttpErrorResponse) => {
-        errorService.setCountryNotFoundApiError();
+        if (err.status === 404) {
+          errorService.setCountryNotFoundApiError();
+        }
         throw err;
       })
     );
