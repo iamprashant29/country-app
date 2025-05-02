@@ -4,6 +4,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 Country App is a web application that provides detailed information about countries around the world. Users can search for countries, view key data such as population, capital, region, flag, and more. The app offers a clean, responsive interface and is built using modern web technologies, making it a great tool for exploring global data in a user-friendly way.
 
+Demo Link - http://countrypedia.s3-website.ap-south-1.amazonaws.com/countries
 
 ## Development server
 
