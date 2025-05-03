@@ -96,4 +96,8 @@ mat-label {
     fill: var(--textColor) !important;
     opacity: 0.8 !important;
   }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: var(--textColor) !important;
+  }
 }

@@ -10,7 +10,7 @@ import {catchError, debounceTime, distinctUntilChanged, map, of, switchMap, tap}
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ErrorService} from '../../../shared/error.service';
+import {ErrorService} from '../../../shared/service/error.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({

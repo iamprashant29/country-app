@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {MatIcon} from '@angular/material/icon';
 import {Observable} from 'rxjs';
-import {ThemeService} from './shared/theme.service';
-import {ThemeType} from './shared/theme.model';
+import {ThemeService} from './shared/service/theme.service';
+import {ThemeType} from './shared/model/theme.model';
 import {AsyncPipe} from '@angular/common';
+import {StorageService} from './shared/service/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ import {AsyncPipe} from '@angular/common';
 export class AppComponent implements OnInit {
   public $isDarkMode: Observable<boolean>;
 
-  constructor(private themeService: ThemeService) {
+  constructor(private themeService: ThemeService, private storageService: StorageService) {
     this.$isDarkMode = this.themeService.isDarkMode.asObservable();
   }
 
@@ -23,7 +24,12 @@ export class AppComponent implements OnInit {
    * ngOnInit
    **/
   ngOnInit() {
-    this.themeService.setActiveMode(ThemeType.Light);
+    const activeMode = this.storageService.getActiveMode();
+    if (activeMode) {
+      this.themeService.setActiveMode(activeMode as ThemeType);
+    } else {
+      this.themeService.setActiveMode(ThemeType.Light);
+    }
   }
 
   /**
