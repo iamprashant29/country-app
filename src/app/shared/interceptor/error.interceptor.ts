@@ -1,7 +1,7 @@
 import {HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest} from '@angular/common/http';
 import {catchError, Observable} from 'rxjs';
 import {inject} from '@angular/core';
-import {ErrorService} from './error.service';
+import {ErrorService} from '../service/error.service';
 
 export function errorInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   const errorService = inject(ErrorService);

@@ -1,6 +1,7 @@
 import {Injectable, Renderer2, RendererFactory2} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {ThemeType} from './theme.model';
+import {ThemeType} from '../model/theme.model';
+import {StorageService} from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ThemeService {
 
   activeMode = ThemeType.Light;
 
-  constructor(private rendererFactory: RendererFactory2) {
+  constructor(private rendererFactory: RendererFactory2, private storageService: StorageService) {
     this.renderer = this.rendererFactory.createRenderer(null, null)
   }
 
@@ -28,6 +29,7 @@ export class ThemeService {
       this.renderer.removeClass(document.body, ThemeType.Dark);
       this.renderer.addClass(document.body, ThemeType.Light);
     }
+    this.storageService.setActiveMode(this.activeMode);
     this.isDarkMode.next(mode === ThemeType.Dark);
   }
 
