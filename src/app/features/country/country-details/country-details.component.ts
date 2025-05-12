@@ -81,16 +81,19 @@ export class CountryDetailsComponent implements OnInit {
    * Formats the language data in a formatted string for the selected country
    **/
   private getFormattedLanguages(selectedCountry: any): string {
-    return Object.values(selectedCountry.languages).join(', ')
+    return selectedCountry?.languages? Object.values(selectedCountry.languages).join(', ') : ''
   }
 
   /**
    * Formats the currency data in a formatted string for the selected country
    **/
   private getFormattedCurrencies(selectedCountry: any): string {
-    const currencyValues = Object.values(selectedCountry.currencies);
-    const currencies = currencyValues.map((currency: any) => { return currency.name; });
-    return currencies.join(', ');
+    if (selectedCountry.currencies) {
+      const currencyValues = Object.values(selectedCountry.currencies);
+      const currencies = currencyValues.map((currency: any) => { return currency.name; });
+      return currencies.join(', ');
+    }
+    return '';
   }
 
   /**
