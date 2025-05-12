@@ -1,5 +1,7 @@
 <div class="navbar">
   <div class="navbar__container">
+    <mat-label>{{ ($isDarkMode | async) ? 'Light Mode' : 'Dark Mode' }}</mat-label>
+    &nbsp;
     <mat-icon fontIcon="{{ ($isDarkMode | async)? 'light_mode' : 'dark_mode'}}" (click)="toggleTheme()"></mat-icon>
   </div>
 </div>

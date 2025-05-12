@@ -6,10 +6,11 @@ import {ThemeService} from './shared/service/theme.service';
 import {ThemeType} from './shared/model/theme.model';
 import {AsyncPipe} from '@angular/common';
 import {StorageService} from './shared/service/storage.service';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatIcon, AsyncPipe],
+  imports: [RouterOutlet, MatIcon, AsyncPipe, MatInputModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
