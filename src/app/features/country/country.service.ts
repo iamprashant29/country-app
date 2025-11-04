@@ -18,7 +18,8 @@ export class CountryService extends BaseService {
    * @returns Observable<any>
    **/
   getCountries(): Observable<any> {
-    const apiUrl = ApiConstants.constants.GET_ALL_COUNTRIES;
+    const requiredFields = ['name', 'population', 'region', 'flags', 'capital'];
+    const apiUrl = `${ApiConstants.constants.GET_ALL_COUNTRIES}${requiredFields}`;
     return this.httpClient?.get<any>(apiUrl);
   }
 
